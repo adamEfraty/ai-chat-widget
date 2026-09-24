@@ -4,3 +4,10 @@ export interface ProductData {
     description: string;
     price: string;
 }
+
+export interface Message {
+    id: string;
+    text: string;
+    sender: "user" | "bot";
+    timestamp: number;
+}

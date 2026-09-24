@@ -2,16 +2,23 @@ import {
   combineReducers,
   compose,
   legacy_createStore as createStore,
+  type Store,
 } from "redux";
-import { userReducer } from "./reducer/user.reducer";
-import { boardReducer } from "./reducer/boards.reducer";
+import { chatReducer } from "./reducer/chat.reducer";
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    gStore: Store;
+  }
+}
 
 const rootReducer = combineReducers({
-  userModule: userReducer,
-  boardModule: boardReducer,
+  chatModule: chatReducer,
 });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(rootReducer, composeEnhancers());
 
